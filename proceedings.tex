@@ -1,0 +1,239 @@
+\documentclass{sigchi}
+
+% Use this section to set the ACM copyright statement (e.g. for
+% preprints).  Consult the conference website for the camera-ready
+% copyright statement.
+
+% Copyright
+%\setcopyright{acmcopyright}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+
+
+% Arabic page numbers for submission.  Remove this line to eliminate
+% page numbers for the camera ready copy
+% \pagenumbering{arabic}
+
+% Load basic packages
+\usepackage{balance}       % to better equalize the last page
+\usepackage{graphics}      % for EPS, load graphicx instead 
+\usepackage[T1]{fontenc}   % for umlauts and other diaeresis
+\usepackage{txfonts}
+\usepackage{mathptmx}
+\usepackage[pdflang={en-US},pdftex]{hyperref}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage{textcomp}
+
+% Some optional stuff you might like/need.
+\usepackage{microtype}        % Improved Tracking and Kerning
+% \usepackage[all]{hypcap}    % Fixes bug in hyperref caption linking
+\usepackage{ccicons}          % Cite your images correctly!
+% \usepackage[utf8]{inputenc} % for a UTF8 editor only
+
+% If you want to use todo notes, marginpars etc. during creation of
+% your draft document, you have to enable the "chi_draft" option for
+% the document class. To do this, change the very first line to:
+% "\documentclass[chi_draft]{sigchi}". You can then place todo notes
+% by using the "\todo{...}"  command. Make sure to disable the draft
+% option again before submitting your final document.
+\usepackage{todonotes}
+
+% Paper metadata (use plain text, for PDF inclusion and later
+% re-using, if desired).  Use \emtpyauthor when submitting for review
+% so you remain anonymous.
+\def\plaintitle{Microsoft Kinect – The challenges of consumer grade body aware interfaces}
+\def\plainauthor{First Author, Second Author, Third Author,
+  Fourth Author, Fifth Author, Sixth Author}
+\def\emptyauthor{}
+\def\plainkeywords{immersion factor ; movement-based interaction; human computer interaction}
+\def\plaingeneralterms{Documentation, Standardization}
+
+% llt: Define a global style for URLs, rather that the default one
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{
+    \def\UrlFont{\sf}
+  }{
+    \def\UrlFont{\small\bf\ttfamily}
+  }}
+\makeatother
+\urlstyle{leo}
+
+% To make various LaTeX processors do the right thing with page size.
+\def\pprw{8.5in}
+\def\pprh{11in}
+\special{papersize=\pprw,\pprh}
+\setlength{\paperwidth}{\pprw}
+\setlength{\paperheight}{\pprh}
+\setlength{\pdfpagewidth}{\pprw}
+\setlength{\pdfpageheight}{\pprh}
+
+% Make sure hyperref comes last of your loaded packages, to give it a
+% fighting chance of not being over-written, since its job is to
+% redefine many LaTeX commands.
+\definecolor{linkColor}{RGB}{6,125,233}
+\hypersetup{%
+  pdftitle={\plaintitle},
+% Use \plainauthor for final version.
+%  pdfauthor={\plainauthor},
+  pdfauthor={\emptyauthor},
+  pdfkeywords={\plainkeywords},
+  pdfdisplaydoctitle=true, % For Accessibility
+  bookmarksnumbered,
+  pdfstartview={FitH},
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=linkColor,
+  breaklinks=true,
+  hypertexnames=false
+}
+
+% create a shortcut to typeset table headings
+% \newcommand\tabhead[1]{\small\textbf{#1}}
+
+% End of preamble. Here it comes the document.
+\begin{document}
+
+\title{\plaintitle}
+
+\numberofauthors{1}
+\author{%
+  \alignauthor{Marine Elise Lafin\\
+    \affaddr{Advanced User Interface Engineering}\\
+    \affaddr{Technische Universität Dresden, Germany}\\
+    \email{marine.lafin@tu-dresden.de}}\\
+
+}
+
+\maketitle
+
+\begin{abstract}
+  The Microsoft Kinect is a popular accessory to the Xbox line of consoles, offering the user a way to navigate the UI by using gestural interactions through body tracking. This paper will offer an in depth look at the different benefits and drawbacks of this consumer-oriented product. The aim of this paper is to show how such a novel product benefited the consumer but also offer some guidance as to which aspects of this experience could be improved upon through the perceived shortcomings of the Microsoft Kinect.   Furthermore, aspects which are important for the integration of body aware interfaces in the consumer’s everyday media usage, will be adressed.
+\end{abstract}
+
+
+% ACM Classfication
+
+
+
+% Author Keywords
+\keywords{\plainkeywords}
+
+% Print the classification codes
+
+
+\section{Introduction}
+
+The Kinect sensor developed by Microsoft Corporation, was announced as ‘Project Natal’ on June 1 2009 at the E3 Microsoft press meeting and put onto the world market in November 2010 as an accessory to the Xbox 360 gaming console. With a total of 10 million devices sold by March 2011, the idea of a gesture-based, body aware user interface found its way to the consumer’s living room for a low acquisition price, making the technology more readily available to the broader public \cite{Corden2018}.
+
+A second revised version of the Kinect sensor was released at a later date, further expanding the tracking capabilities of the module. For the sake of simplicity, only the v1 of the Kinect will be considered. Microsoft also released a software development kit for the Kinect which allowed the module to be used as a tool for non-commercial products and research projects\cite{LeBlanc2011}.
+
+The sensor is based upon a depth sensing technology using the emission of IR rays to cast a pattern upon the environment and simultaneously taking an image of it, with CMOS cameras fitted with an IR-pass filter. The image is then processed to calculate the depth displacement of each pixel, which then permits to calculate the movements of the recorded subject \cite{Andersen2012}. From the collected colour images, depth information and skeleton tracking data; the user’s movements can be tracked and the software can interpret the gestures in relation to the shown interface \cite{Francese2012}.
+
+As a further feature, it has a four-element linear microphone array which can be used for direction localisation as well as recognising voice commands. The microphones make use of advanced technologies like echo cancellation and noise suppression to record more precise data points \cite{Francese2012}. 
+
+Disregarding its few flaws, the Kinect is a brilliant example of a movement-based system which is readily available and brings the possibility of body-aware interaction to the consumer’s home. In the following sections, Microsoft’s implementation of a body-manipulated user interface will be assessed. The advantages but also constraints of such consumer system will be further analysed and discussed.
+
+\section{Movement-based Systems}
+A movement-based system allows the user to interact with the computer by means of movement of their body. This type of interaction strives to be natural since it uses movements familiar to the user and close to real world interactions. All of the user’s body can be tracked in such a system, from the smallest, like eye motions and facial expressions, to larger limb movements. Such a body aware interaction system offers a rich set of intuitive input \cite{Pasch2009}.
+
+\subsection{Analysis into the immersion factor}
+The intensity of immersion in virtual interactive environments is an important factor for user experience. When looking at the Immersion Model of Brown and Cairns, the fact that controls as well as visuals are important pillars of impressiveness, stands out \cite{Pasch2009}.
+
+When using the Kinect, all interfaces are controlled by the user’s body. This controller free approach to interactions with a user interface was a novel approach in the world of video game entertainment, permitting, according to a study conducted by the university of Salerno, a more immersive experience for the user. Furthermore, the more intuitive aspect of using one’s body to control actions on screen lead to a higher perceived ease of usage contrary to a controller-based system. The use of the entire body to interact with virtual data also seemed to correlate with a higher feeling of involvement in the experience since the controller free experience lets the interaction barrier disappear, thanks to the use of natural and intuitive gestures \cite{Francese2012}. However, some aspects of the Microsoft Kinect experience can disturb the immersive experience of its user base.
+
+
+\section{Immersion breaking experiences}
+An interface always strives to provide fluid and intuitive interactions for the user, to further optimise their workflow and make them feel immersed in the user experience. However, this is a fragile equilibrium since any minor inconvenience can remind the user of the barrier existing between them and the computer. Even a fully body-aware interface system such as the Microsoft Kinect can be faced with such issues.
+
+\subsection{Physical effort and possible injuries}
+One caveat with a gesture and body-aware based system is the perceived physical effort while using the system. Since the user interface requires the user to move around, a fatigue can affect the user and negatively impact the seamless interaction with the system \cite{Francese2012}.
+
+Furthermore the user is also limited by the tracking technology of the device. The interface might limit the interaction field needed by the user to perform most actions; however, the user still requires a certain amount of space to be able to perform the required interactions. It should also be noted that the Kinect has a limited tracking range, forcing the user to maintain a certain distance to the screen and also forcing them to face the screen since otherwise the necessary information to track the user cannot be obtained \cite{Andersen2012}. This limits the range of motion of the end-user and makes them more aware of the limitations of the dedicated interaction space as well as underlines the still ever so present interaction barrier.
+The immersivity of the medium can lead to physical injuries or accidents since the user can forget about the real world surrounding them, resulting in an interruption of the user experience. Exertion injuries can also occur due to either lack of proper stretching or a lack of physical breaks, a phenomenon which can also be traced back to the high level of immersion leading to a lack of awareness of time and surroundings \cite{Pasch2009}.
+
+\subsection{Lack of haptic feedback}
+Another important pillar in the designing of user interfaces is the feedback given to the user as to assess whether their interaction with the computer were successful. In a traditional media, sensory immersion is limited to sight, hearing contrary to gestural interactions which also a physical component \cite{Pasch2009}. This poses a new challenge, since the lack of possible ways to provide any kind of haptic, forces the user interface to provide sensory feedback in other ways than a haptic ones.
+
+A good example of such a process is the actuation of buttons in the user interface. The use of a classic UI button in this case does provide the user with any physical feedback as for example the click of a mouse. Microsoft’s solution to this issue is to ask the user to hold their hand over the selected button for a set amount of time. This interaction is slightly problematic as it lacks a good visible feedback since the only indication that the action is being performed, is a gauge filling up around the icon. This can be easily overlooked by the user or could even be triggered unintentionally \cite{Nielsen}.
+In this scenario, it is clear that another means of physical feedback could enhance the user’s experience. 
+
+\subsection{Reliability and Technical constraints}
+It should be noted that the Kinect’s technology can be prone to inconsistent readings [4]. This means that the perceived accuracy of the mapping of movement, can be affected, which in itself leads to an unsatisfactory feeling for the user \cite{Pasch2009}. The discrepancy between the actions performed in the UI and the user’s gestural input breaks the immersion and the workflow of the person interacting with the system, becoming a hindrance to the user’s end goal.
+
+Another limiting factor is the decreased depth resolution with increased distance, this limits the interaction area of the Microsoft Kinect \cite{Andersen2012}. This forces the user to stay within the field of interaction of the Kinect reminding them of the system's limitation and possibly interrupting some of the user's interactions within the virtual environment. 
+
+Sometimes false/incorrect inputs can be an issue that may arise during the user's interaction with the UI. This could be either due to the technological limitations of the Kinect or simply due to some UI design issues that arise in the Xbox Kinect interface. This can, for example happen in games without a screen to confirm an action or in games featuring button-less or swipe-base UIs which does mean that the design of the UI might to be improved upon \cite{Pirttiniemi2012}.
+
+\section{Discussion}
+The more an interface is based on innate gestures by means of body gestures, the more the interaction with a computer feels intuitive and involving, which is something the Kinect does well. However in further developments, some aspects such as the lack of haptic feedback, should be improved upon. Since physical activity is an integral part of the interactive environment of the Kinect, but the physical side effects could be mitigated by a screen reminding the user to take a break from their activity or simply by inviting the user to sit down. To avoid any unwanted injuries with physical objects surrounding the user, a warning system could be implemented. However this would require a more advanced tracking solution than the one used by the Kinect. Furthermore a larger interaction space could be beneficial for the user but since the user still have to be able to see the screen, this is a negligible factor. More important aspects to improve upon would be to improve its accuracy as well as accidental trigger since those can be immersiveness breaking experiences.  This could be done by improving upon the Kinect's sensors but also by improving some UI design aspects to mitigate false inputs. 
+
+ All this leads to the conclusion that further research into methods to make body-aware interaction more readily available to the wider public should be pursued. An important factors for this medium of user interfaces is clearly a well thought out visual or audio feedback. Maybe further down the line, intuitive haptic feedback could be introduced to the user's experience through accessories. Further focus should be put onto avoiding any immersion breaking experience through the limitation of hardware or software.
+ 
+ As a whole, the Microsoft Kinect is a step in the right direction, even with its flaws and limited interactive space. Its wide usage in research and tinkerer community further proves that the Microsoft Kinect is a great module to explore the opportunities offered by full body tracking at a low entry price.
+Overall, the Microsoft Kinect is a very interesting product which showcases how a body-aware system can be integrated into a user's home which in many ways makes interacting with an interface a more immersive experience than ever.
+
+
+% Use a numbered list of references at the end of the article, ordered
+% alphabetically by first author, and referenced by numbers in
+% brackets~\cite{ethics, Klemmer:2002:WSC:503376.503378,
+%   Mather:2000:MUT, Zellweger:2001:FAO:504216.504224}. For papers from
+% conference proceedings, include the title of the paper and an
+% abbreviated name of the conference (e.g., for Interact 2003
+% proceedings, use \textit{Proc. Interact 2003}). Do not include the
+% location of the conference or the exact date; do include the page
+% numbers if available. See the examples of citations at the end of this
+% document. Within this template file, use the \texttt{References} style
+% for the text of your citation.
+
+% Your references should be published materials accessible to the
+% public.  Internal technical reports may be cited only if they are
+% easily accessible (i.e., you provide the address for obtaining the
+% report within your citation) and may be obtained by any reader for a
+% nominal fee.  Proprietary information may not be cited. Private
+% communications should be acknowledged in the main text, not referenced
+% (e.g., ``[Robertson, personal communication]'').
+
+
+
+
+% Balancing columns in a ref list is a bit of a pain because you
+% either use a hack like flushend or balance, or manually insert
+% a column break.  http://www.tex.ac.uk/cgi-bin/texfaq2html?label=balance
+% multicols doesn't work because we're already in two-column mode,
+% and flushend isn't awesome, so I choose balance.  See this
+% for more info: http://cs.brown.edu/system/software/latex/doc/balance.pdf
+%
+% Note that in a perfect world balance wants to be in the first
+% column of the last page.
+%
+% If balance doesn't work for you, you can remove that and
+% hard-code a column break into the bbl file right before you
+% submit:
+%
+% http://stackoverflow.com/questions/2149854/how-to-manually-equalize-columns-
+% in-an-ieee-paper-if-using-bibtex
+%
+% Or, just remove \balance and give up on balancing the last page.
+%
+
+% BALANCE COLUMNS
+
+% REFERENCES FORMAT
+% References must be the same font size as other body text.
+\bibliographystyle{SIGCHI-Reference-Format}
+\bibliography{sample}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
